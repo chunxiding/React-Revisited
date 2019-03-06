@@ -1,4 +1,7 @@
-const todos = [
+import { todos } from './reducer';
+import { createStore } from 'redux';
+
+const defaultTodos = [
     { 
         id: 1,
         content: "TODO 1"
@@ -13,4 +16,6 @@ const todos = [
     },
 ];
 
-export default todos;
+const store = createStore(todos, defaultTodos);
+
+export default store;
