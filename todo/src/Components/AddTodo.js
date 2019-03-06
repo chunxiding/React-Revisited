@@ -1,10 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from '../action';
 
-const AddTodo = () => (
-    <header className="header">
-        <h1>Todos</h1>
-        <input className="new-todo" placeholder="What next？" autoFocus />
-    </header>
-);
+let AddTodo = ({dispatch}) => {
+    let input
+    return (
+        <header className="header">
+            <h1>Todos</h1>
+            <input onKeyDown={(e) => {
+                    if (input.value && e.keyCode === 13) {
+                        dispatch(addTodo(input.value))
+                        input.value = ''
+                    }
+                    }}
+                    ref={node => input = node}
+            className="new-todo" placeholder="What's next？" autoFocus />
+        </header>
+    )
+};
+
+AddTodo = connect()(AddTodo)
 
 export default AddTodo;
